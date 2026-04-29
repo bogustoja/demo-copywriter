@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marek Przybylski — Copywriter</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #1a1814;
+    --cream: #f7f4ee;
+    --warm: #e8e2d6;
+    --accent: #c8a96e;
+    --accent-dark: #9a7a45;
+    --muted: #7a7267;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(247, 244, 238, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--warm);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 6rem 4rem;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    border: 1px solid var(--accent);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent-dark);
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 400px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; align-items: center;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+  .btn-secondary {
+    color: var(--ink);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: gap 0.2s;
+  }
+  .btn-secondary:hover { gap: 0.9rem; }
+  .btn-secondary::after { content: '→'; }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .hero-image-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    background: linear-gradient(135deg, #2a251f 0%, #1a1814 60%, #0d0b08 100%);
+  }
+  .hero-photo-circle {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: var(--warm);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--ink);
+    font-weight: 700;
+    border: 4px solid var(--accent);
+  }
+  .hero-image-text {
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hero-stats {
+    position: absolute; bottom: 2.5rem; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 3rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .section-subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.8;
+  }
+
+  /* OFERTA */
+  #oferta { background: var(--white); }
+  .oferta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-top: 3.5rem;
+    border: 1.5px solid var(--warm);
+  }
+  .oferta-card {
+    padding: 2.5rem 2rem;
+    background: var(--white);
+    border: 1.5px solid var(--warm);
+    transition: background 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .oferta-card:hover { background: var(--cream); }
+  .oferta-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--warm);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .oferta-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .oferta-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* CENNIK */
+  #cennik { background: var(--cream); }
+  .cennik-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .cennik-card {
+    background: var(--white);
+    border: 1px solid var(--warm);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cennik-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+  .cennik-card.featured {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+  }
+  .cennik-card.featured .cennik-price,
+  .cennik-card.featured .cennik-name { color: var(--white); }
+  .cennik-card.featured .cennik-desc,
+  .cennik-card.featured .cennik-item { color: rgba(255,255,255,0.6); }
+  .featured-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--ink);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .cennik-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .cennik-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .cennik-price span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .cennik-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--warm);
+  }
+  .cennik-card.featured .cennik-desc { border-color: rgba(255,255,255,0.15); }
+  .cennik-items { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .cennik-item {
+    font-size: 0.9rem;
+    color: var(--muted);
+    display: flex; align-items: flex-start; gap: 0.6rem;
+  }
+  .cennik-item::before { content: '✓'; color: var(--accent-dark); font-weight: 500; flex-shrink: 0; }
+
+  /* PORTFOLIO */
+  #portfolio { background: var(--ink); color: var(--cream); }
+  #portfolio .section-title { color: var(--white); }
+  #portfolio .section-subtitle { color: rgba(255,255,255,0.5); }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .portfolio-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 2.5rem;
+    transition: background 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .portfolio-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: var(--accent);
+  }
+  .portfolio-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .portfolio-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .portfolio-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7;
+  }
+
+  /* BLOG */
+  #blog { background: var(--cream); }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+  .blog-card {
+    border-top: 2px solid var(--warm);
+    padding-top: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .blog-card:hover { border-color: var(--accent); }
+  .blog-date {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .blog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .blog-title:hover { color: var(--accent-dark); }
+  .blog-excerpt {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* KONTAKT */
+  #kontakt { background: var(--white); }
+  .kontakt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    margin-top: 3.5rem;
+  }
+  .kontakt-info p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .kontakt-detail {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .kontakt-item {
+    display: flex; align-items: center; gap: 1rem;
+    font-size: 0.95rem;
+  }
+  .kontakt-icon {
+    width: 40px; height: 40px;
+    background: var(--cream);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .kontakt-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .form-input, .form-textarea {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--warm);
+    border-radius: 4px;
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-textarea { resize: vertical; min-height: 140px; }
+  .form-submit {
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--accent-dark); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+  footer a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--accent); }
+
+  /* FADE IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 300px; }
+    section { padding: 4rem 1.5rem; }
+    .oferta-grid, .cennik-grid, .blog-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .kontakt-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-left { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Marek Przybylski</a>
+  <ul class="nav-links">
+    <li><a href="#oferta">Oferta</a></li>
+    <li><a href="#cennik">Cennik</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <span class="hero-tag">Copywriter · Content Strategist</span>
+    <h1 class="hero-title">Słowa,<br>które <em>sprzedają</em><br>i angażują.</h1>
+    <p class="hero-subtitle">Tworzę treści, które budują marki, przyciągają klientów i zostają w głowie długo po przeczytaniu.</p>
+    <div class="hero-cta">
+      <a href="#kontakt" class="btn-primary">Porozmawiajmy</a>
+      <a href="#portfolio" class="btn-secondary">Zobacz realizacje</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-placeholder">
+      <div class="hero-photo-circle">MP</div>
+      <span class="hero-image-text">Twoje zdjęcie tutaj</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">8+</span>
+        <span class="stat-label">Lat doświadczenia</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">120+</span>
+        <span class="stat-label">Zrealizowanych projektów</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">40+</span>
+        <span class="stat-label">Zadowolonych klientów</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section id="oferta">
+  <p class="section-tag fade-in">Zakres usług</p>
+  <h2 class="section-title fade-in">Co mogę dla Ciebie<br>zrobić?</h2>
+  <p class="section-subtitle fade-in">Specjalizuję się w tekstach, które łączą estetykę z wynikami. Każde zlecenie traktuję indywidualnie.</p>
+  <div class="oferta-grid">
+    <div class="oferta-card fade-in">
+      <div class="oferta-number">01</div>
+      <h3 class="oferta-title">Copywriting reklamowy</h3>
+      <p class="oferta-desc">Slogany, hasła, treści do kampanii reklamowych online i offline. Piszę tak, żeby zapadało w pamięć.</p>
+    </div>
+    <div class="oferta-card fade-in">
+      <div class="oferta-number">02</div>
+      <h3 class="oferta-title">Content marketing</h3>
+      <p class="oferta-desc">Artykuły blogowe, case studies, newslettery i treści SEO, które budują pozycję Twojej marki w sieci.</p>
+    </div>
+    <div class="oferta-card fade-in">
+      <div class="oferta-number">03</div>
+      <h3 class="oferta-title">Social media</h3>
+      <p class="oferta-desc">Posty, stories, opisy profilu — spójny głos marki w mediach społecznościowych, który przyciąga followersów.</p>
+    </div>
+    <div class="oferta-card fade-in">
+      <div class="oferta-number">04</div>
+      <h3 class="oferta-title">Strony i landing page</h3>
+      <p class="oferta-desc">Treści do stron internetowych pisane pod konwersję — od hero section po stopkę. Z dbałością o UX writing.</p>
+    </div>
+    <div class="oferta-card fade-in">
+      <div class="oferta-number">05</div>
+      <h3 class="oferta-title">E-mail marketing</h3>
+      <p class="oferta-desc">Sekwencje mailingowe, newslettery i kampanie drip, które budują relację z subskrybentami i generują sprzedaż.</p>
+    </div>
+    <div class="oferta-card fade-in">
+      <div class="oferta-number">06</div>
+      <h3 class="oferta-title">Korekta i redakcja</h3>
+      <p class="oferta-desc">Poprawiam, ulepszam i nadaję charakter już istniejącym tekstom. Twoje treści w nowym, lepszym wydaniu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CENNIK -->
+<section id="cennik">
+  <p class="section-tag fade-in">Cennik</p>
+  <h2 class="section-title fade-in">Przejrzyste<br>warunki współpracy</h2>
+  <p class="section-subtitle fade-in">Każdy projekt jest inny. Poniżej orientacyjne pakiety — ostateczna cena ustalana jest po rozmowie.</p>
+  <div class="cennik-grid">
+    <div class="cennik-card fade-in">
+      <p class="cennik-name">Starter</p>
+      <p class="cennik-price">od 299<span> zł</span></p>
+      <p class="cennik-desc">Idealne na start lub jednorazowe zlecenia</p>
+      <ul class="cennik-items">
+        <li class="cennik-item">1 tekst do 800 słów</li>
+        <li class="cennik-item">1 runda poprawek</li>
+        <li class="cennik-item">Termin 5–7 dni roboczych</li>
+        <li class="cennik-item">Format: DOCX/Google Docs</li>
+      </ul>
+    </div>
+    <div class="cennik-card featured fade-in">
+      <span class="featured-badge">Najpopularniejszy</span>
+      <p class="cennik-name">Biznes</p>
+      <p class="cennik-price">od 899<span> zł</span></p>
+      <p class="cennik-desc">Dla firm szukających regularnej współpracy</p>
+      <ul class="cennik-items">
+        <li class="cennik-item">4 teksty miesięcznie</li>
+        <li class="cennik-item">Strategia contentu</li>
+        <li class="cennik-item">Nieograniczone poprawki</li>
+        <li class="cennik-item">Priorytetowy termin realizacji</li>
+        <li class="cennik-item">Raport miesięczny</li>
+      </ul>
+    </div>
+    <div class="cennik-card fade-in">
+      <p class="cennik-name">Premium</p>
+      <p class="cennik-price">od 2499<span> zł</span></p>
+      <p class="cennik-desc">Kompleksowa obsługa contentu marki</p>
+      <ul class="cennik-items">
+        <li class="cennik-item">Nieograniczona liczba tekstów</li>
+        <li class="cennik-item">Audyt treści strony</li>
+        <li class="cennik-item">Social media + blog</li>
+        <li class="cennik-item">Opieka strategiczna</li>
+        <li class="cennik-item">Dedykowany opiekun</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <p class="section-tag fade-in" style="color: var(--accent);">Realizacje</p>
+  <h2 class="section-title fade-in">Wybrane projekty</h2>
+  <p class="section-subtitle fade-in">Fragmenty pracy dla klientów z różnych branż — od e-commerce po branżę B2B.</p>
+  <div class="portfolio-grid">
+    <div class="portfolio-card fade-in">
+      <p class="portfolio-tag">E-commerce · Moda</p>
+      <h3 class="portfolio-title">Rebrand komunikacji dla butiku online</h3>
+      <p class="portfolio-desc">Stworzenie nowego głosu marki, opisów produktów i kampanii e-mail dla sklepu z odzieżą premium. Wzrost open rate o 34%.</p>
+    </div>
+    <div class="portfolio-card fade-in">
+      <p class="portfolio-tag">B2B · SaaS</p>
+      <h3 class="portfolio-title">Content strategia dla startupu technologicznego</h3>
+      <p class="portfolio-desc">6-miesięczna strategia contentowa, 24 artykuły blogowe i landing page dla aplikacji do zarządzania projektami.</p>
+    </div>
+    <div class="portfolio-card fade-in">
+      <p class="portfolio-tag">Gastronomia</p>
+      <h3 class="portfolio-title">Kampania reklamowa restauracji</h3>
+      <p class="portfolio-desc">Hasła reklamowe, posty social media i newsletter dla warszawskiej restauracji. Zasięg organiczny wzrósł trzykrotnie.</p>
+    </div>
+    <div class="portfolio-card fade-in">
+      <p class="portfolio-tag">Finanse · Blog</p>
+      <h3 class="portfolio-title">Seria artykułów edukacyjnych o inwestowaniu</h3>
+      <p class="portfolio-desc">12 artykułów SEO dla portalu finansowego. Łącznie ponad 80 000 wyświetleń organicznych w pierwszym roku.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <p class="section-tag fade-in">Wiedza i inspiracje</p>
+  <h2 class="section-title fade-in">Najnowsze wpisy</h2>
+  <p class="section-subtitle fade-in">Dzielę się tym, co wiem o pisaniu, komunikacji i budowaniu marki słowem.</p>
+  <div class="blog-grid">
+    <div class="blog-card fade-in">
+      <p class="blog-date">15 kwietnia 2025</p>
+      <h3 class="blog-title">Jak pisać nagłówki, które zatrzymują przewijanie?</h3>
+      <p class="blog-excerpt">Masz 3 sekundy zanim czytelnik scrolluje dalej. Oto 7 sprawdzonych technik, które sprawiają, że nagłówek działa.</p>
+    </div>
+    <div class="blog-card fade-in">
+      <p class="blog-date">2 kwietnia 2025</p>
+      <h3 class="blog-title">Głos marki: dlaczego spójność wygrywa z kreatywnością</h3>
+      <p class="blog-excerpt">Wiele marek goni za oryginalnością, zapominając o czymś ważniejszym. Wyjaśniam, co naprawdę buduje rozpoznawalność.</p>
+    </div>
+    <div class="blog-card fade-in">
+      <p class="blog-date">20 marca 2025</p>
+      <h3 class="blog-title">ChatGPT vs copywriter — komu powierzyć teksty w 2025?</h3>
+      <p class="blog-excerpt">Uczciwa analiza bez marketingowej ściemy. Gdzie AI wygrywa, gdzie przegrywa i jak z tego mądrze korzystać.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <p class="section-tag fade-in">Kontakt</p>
+  <h2 class="section-title fade-in">Zacznijmy<br>współpracę</h2>
+  <div class="kontakt-grid">
+    <div class="kontakt-info fade-in">
+      <p>Masz projekt do omówienia? Szukasz copywritera do stałej współpracy? Napisz — odpowiadam w ciągu 24 godzin.</p>
+      <div class="kontakt-detail">
+        <div class="kontakt-item">
+          <div class="kontakt-icon">✉</div>
+          <span>marek@przybylski.pl</span>
+        </div>
+        <div class="kontakt-item">
+          <div class="kontakt-icon">📞</div>
+          <span>+48 600 000 000</span>
+        </div>
+        <div class="kontakt-item">
+          <div class="kontakt-icon">📍</div>
+          <span>Warszawa / zdalnie</span>
+        </div>
+      </div>
+    </div>
+    <div class="kontakt-form fade-in">
+      <div class="form-group">
+        <label class="form-label">Imię i nazwisko</label>
+        <input type="text" class="form-input" placeholder="Jan Kowalski">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="jan@firma.pl">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Temat</label>
+        <input type="text" class="form-input" placeholder="Np. copywriting dla e-commerce">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Wiadomość</label>
+        <textarea class="form-textarea" placeholder="Opisz krótko swój projekt..."></textarea>
+      </div>
+      <button class="form-submit">Wyślij wiadomość</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Marek Przybylski. Wszelkie prawa zastrzeżone.</span>
+  <div style="display:flex; gap:1.5rem;">
+    <a href="#">LinkedIn</a>
+    <a href="#">Polityka prywatności</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
